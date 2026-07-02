@@ -5,7 +5,8 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class RegistroClimatico {
+public class RegistroClimatico {      //entendi como que los unicos componentes climaticos para esta itercion (y para notificar
+                                        //son humedad y temperatura
 
     private final Double temperatura;
     private final Integer humedad;

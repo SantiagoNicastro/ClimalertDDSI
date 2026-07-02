@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 
 @SpringBootTest
-class NotificacionServiceIntegrationTest {
+class NotificacionServiceIntegrationTest {  //este test va a fallar si no se tiene credenciales de Mailtrap
 
     @Autowired
     private NotificacionService notificacionService;

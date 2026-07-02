@@ -1,4 +1,5 @@
-package ar.edu.utn.ba.ddsi.climalert.scheduling;
+package ar.edu.utn.ba.ddsi.climalert.scheduler;
+
 import ar.edu.utn.ba.ddsi.climalert.entities.RegistroClimatico;
 import ar.edu.utn.ba.ddsi.climalert.service.NotificacionService;
 import ar.edu.utn.ba.ddsi.climalert.repository.RegistroClimaticoRepository;
@@ -13,6 +14,8 @@ public class AlertaScheduler {
     private final RegistroClimaticoRepository repository;
     private final NotificacionService notificacionService;
 
+    private RegistroClimatico ultimoRegistroAlertado;
+
     public AlertaScheduler(RegistroClimaticoRepository repository, NotificacionService notificacionService) {
         this.repository = repository;
         this.notificacionService = notificacionService;
@@ -26,8 +29,13 @@ public class AlertaScheduler {
             return;
         }
 
+        if (ultimo == ultimoRegistroAlertado) {
+            return;
+        }
+
         if (ultimo.esCondicionCritica()) {
             notificacionService.enviarAlerta(ultimo);
+            ultimoRegistroAlertado = ultimo;
         }
     }
 }
